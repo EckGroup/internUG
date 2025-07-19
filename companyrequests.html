@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Portal</title>
+    <link rel="stylesheet" href="requests.css">
+
+
+      <style>
+        /* Add any styling you need */
+        .message-container {
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+          .message-container{
+              align-items: center;
+              align-text: center;
+              background-color: #2C1D4B;
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/logo.svg">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="internrequests.html">Intern Requests</a></li>
+                <li><a href="companyrequests.html">Company Requests</a></li>
+                <li><a href="login.html">Admin</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    
+    <section class="intro">
+        <main>
+            <div class="container">
+                <h2>Welcome to the Internship Portal</h2>
+                <p>Connect with our university for your intern and service personnel needs.</p>  
+                <div class="buttons">
+                        <button>Apply to an Internship </button>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <section class="message-container">
+        <h1 id="welcomeMessage"></h1>
+        <p id="nobackground">Fill the form to request your intern/national service personnel.</p>
+    </section>
+ <script>
+        // Function to get the URL parameter
+        function getParameterByName(name) {
+            let url = new URL(window.location.href);
+            return url.searchParams.get(name);
+        }
+
+        // Get the company name from the URL
+        const companyName = getParameterByName('company');
+
+        // Display the personalized message
+        if (companyName) {
+            document.getElementById('welcomeMessage').textContent = `Hello ${companyName}!`;
+        }
+    </script>
+    <section class="form">
+        <div class="container-form">
+            <h3>Send a form</h3>
+            <p>(Please fill out the required fields for internship request)</p>
+            <form action="https://api.sheetmonkey.io/form/fcDoX95Scm14ZbaWJmQk68" method="post">
+                <label for="company-name">Full name:</label>
+                <input type="text" id="full name" name="Full name" placeholder="Full name:">
+                <label for="current-role">Skills</label>
+                <input type="text" id="skills" name="skills" placeholder="skills">
+                <label for="department">Department applying to:</label>
+                <input type="text" id="department" name="department" placeholder="Department">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Email">
+                    <div class="container">
+                        <h3>Choose Internship Duration</h3>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" name="3-months" value="3-months">
+                                <h4>3 Months</h4>
+                                <p>For short term projects</p>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="3-months" value="3-months">
+                                <h4>6 Months</h4>
+                                <p>For selected projects</p>
+                            </div>
+                            <div class="option">
+                                <input type="radio" name="3-months" value="3-months">
+                                <h4>1 Year</h4>
+                                <p>For long term projects</p>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="container">
+                    <h3>National Service</h3>
+                    <div class="option">
+                        <input type="radio" name="3-months" value="3-months">
+                        <h4>1 Year</h4>
+                        <p>One term submission</p>
+                    </div>
+                </div>
+
+                <div class="container-send">
+                    <h3>Send Request to Companies</h3>
+                    <div class="form-group">
+                        <label for="organisation">Organisation</label>
+                        <select id="organisation"><br><br>
+                            <option value="options">Select Organisation</option>
+                            <option value="MTN Ghana">MTN Ghana</option>
+                            <option value="Vodafone Ghana">Vodafone Ghana</option>
+                            <option value="Ecobank Ghana">Ecobank Ghana</option>
+                            <option value="Bank of Ghana">Bank of Ghana</option>
+                            <option value="UT Bank">UT Bank</option>
+                            <option value="AirtelTigo Ghana">AirtelTigo Ghana</option>
+                            <option value="CalBank">CalBank</option>
+                            <option value="Stanbic Bank">Stanbic Bank</option>
+                            <option value="Absa Bank Ghana">Absa Bank Ghana</option>
+                            <option value="BGOIL Ghana">GOIL Ghana</option>
+                            <option value="DHL Ghana">DHL Ghana</option>
+                            <option value="TotalEnergies Ghana">KPMG Ghana</option>
+                            <option value="PwC Ghana">PwC Ghana</option>
+                            <option value="Unilever Ghana">Unilever Ghana</option>
+                        </select>
+                         <p>Select applicable departments for your internship</p>
+                        <button type="submit">Submit Request</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+            <script>
+                // Listen for form submission
+                document.getElementById('request-form').addEventListener('submit', function(e) {
+                    e.preventDefault(); // Prevent the form from submitting normally
+            
+                    // Get form values
+                    const companyName = document.getElementById('company-name').value;
+                    const currentRole = document.getElementById('current-role').value;
+                    const department = document.getElementById('department').value;
+            
+                    // Store the form data in localStorage
+                    const requestData = {
+                        companyName: companyName,
+                        currentRole: currentRole,
+                        department: department
+                    };
+            
+                    localStorage.setItem('latestRequest', JSON.stringify(requestData));
+            
+                    // Optionally, show a success message or redirect
+                    alert('Request saved successfully!');
+            
+                    // Redirect back to index.html
+                    window.location.href = 'index.html';
+                });
+            </script>
+        </div>
+       
+            </form>
+    </section>
+
+</body>
+
+<footer>
+    <div class="footer">
+        <p>&copy; Internship Portal 2024. All rights reserved.</p>
+    </div>
+</footer>
+</html>
